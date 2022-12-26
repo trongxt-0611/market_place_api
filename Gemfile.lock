@@ -200,6 +200,9 @@ DEPENDENCIES
   byebug
   config
   listen (~> 3.3)
+  net-imap
+  net-pop
+  net-smtp
   puma (~> 5.0)
   rails (~> 6.1.7)
   spring
