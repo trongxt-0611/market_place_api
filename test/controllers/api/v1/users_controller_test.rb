@@ -51,4 +51,5 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
       delete api_v1_user_url(@user), as: :json
     end
     assert_response :no_content
+  end
 end

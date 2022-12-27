@@ -1,4 +1,5 @@
 class JsonWebToken
+  #set up the system for generating a JWT token.
   #create secrect key constant
   SECRECT_KEY = Rails.application.secrets.secret_key_base.to_s
 
