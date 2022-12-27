@@ -52,4 +52,31 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
   #   end
   #   assert_response :no_content
   # end
+
+  # test "should update user" do
+  #   put api_v1_user_url(@user), params: { user: { email:@user.email } },
+  #                               headers: { Authorization: JsonWebToken.encode(user_id: @user.id) },
+  #                               as: :json
+  #   assert_response :success
+  # end
+
+  # test "should forbit update user" do
+  #   put api_v1_user_url(@user), params: { user: { email: @user.email } },
+  #                               as: :json_response
+  #   asse
+
+  # test "should destory user" do
+  #   assert_difference("User.count", -1) do
+  #     delete api_v1_user_url(@user), headers: { Authorization: JsonWebToken.encode(user_id: @user.id)},
+  #                                    as: :json
+  #   end
+  #   assert_response :no_content
+  # end
+
+  # test "should forbidden destroy user" do
+  #   assert_no_difference("User.count") do
+  #     delete api_v1_user_url(@user), as: :json
+  #   end
+  #   assert_response :forbidden
+  # end
 end
