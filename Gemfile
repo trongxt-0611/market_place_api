@@ -45,3 +45,5 @@ gem "bcrypt", "~> 3.1"
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+
+gem "jwt", "~> 2.6"
