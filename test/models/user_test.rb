@@ -24,4 +24,18 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.nil?
   end
 
+  #destroy the user should be destroy  linked products
+  test 'destroy user should be destroy linked products' do
+    assert_difference('Product.count', -1) do
+      user = users(:one)
+      user.destroy
+    end
+  end
+
+  #should have positive price
+  test'should have positive price' do
+    product = products(:one)
+    product.price = -1
+    assert_not product.valid?
+  end
 end
