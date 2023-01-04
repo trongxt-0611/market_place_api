@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: %i[show update destroy]
-  before-action :check_owner, only: %i[update destroy]
+  before_action :check_owner, only: %i[update destroy]
   #GET /users/1
   def show
     render json: @user
