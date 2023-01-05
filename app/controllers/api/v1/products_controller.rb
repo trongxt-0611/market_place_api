@@ -8,7 +8,8 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def show
-    render json: product_serialize(@product)
+    options = {include: [:user]}
+    render json: product_serialize(@product, options)
   end
 
   def create
@@ -48,7 +49,7 @@ class Api::V1::ProductsController < ApplicationController
     head :forbidden unless @product.user_id == current_user&.id
   end
 
-  def product_serialize product
-    ProductSerializer.new(product).serializable_hash
+  def product_serialize(product, options = {})
+    ProductSerializer.new(product, options).serializable_hash
   end
 end
