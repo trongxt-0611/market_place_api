@@ -4,17 +4,17 @@ class Api::V1::ProductsController < ApplicationController
   before_action :check_owner, only: [:update, :destroy]
 
   def index
-    render json: Product.all
+    render json: product_serialize(Product.all)
   end
 
   def show
-    render json: @product
+    render json: product_serialize(@product)
   end
 
   def create
     @product = Product.new(product_params)
     if @product.save
-      render json: @product, status: :created
+      render json: product_serialize(@product), status: :created
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -22,7 +22,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      render json: @product
+      render json: product_serialize(@product)
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -46,5 +46,9 @@ class Api::V1::ProductsController < ApplicationController
 
   def check_owner
     head :forbidden unless @product.user_id == current_user&.id
+  end
+
+  def product_serialize product
+    ProductSerializer.new(product).serializable_hash
   end
 end
