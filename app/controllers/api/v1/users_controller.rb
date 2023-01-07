@@ -3,7 +3,8 @@ class Api::V1::UsersController < ApplicationController
   before_action :check_owner, only: %i[update destroy]
   #GET /users/1
   def show
-    render json: serialize(@user)
+    options = {include: [:products]}
+    render json: serialize(@user, options)
   end
 
   #GET /users
@@ -53,7 +54,7 @@ class Api::V1::UsersController < ApplicationController
     head :forbidden unless current_user&.id == @user.id
   end
 
-  def serialize user
-    UserSerializer.new(user).serializable_hash
+  def serialize(user, options = {})
+    UserSerializer.new(user, options).serializable_hash
   end
 end
