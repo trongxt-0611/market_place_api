@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  validates :email, uniqueness: true
-  validates_format_of :email, with: Settings.email_regex
+  validates :email, presence: true,
+                    uniqueness: true,
+                    format: {with: Settings.user.email_regex}
   validates :password_digest, presence: true
   has_secure_password
   has_many :products, dependent: :destroy
