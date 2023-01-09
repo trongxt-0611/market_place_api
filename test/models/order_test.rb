@@ -1,0 +1,14 @@
+require "test_helper"
+
+class OrderTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
+  #test the order should have a positive total
+  test "the order should have a positive total" do
+    order = orders(:one)
+    order.total = -1
+    assert_not order.valid?
+  end
+
+end

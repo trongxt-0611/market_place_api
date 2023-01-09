@@ -28,7 +28,7 @@ class ProductTest < ActiveSupport::TestCase
   test "should sort products by most recent" do
     #touch product to update them
     products(:two).touch
-    assert_equal [products(:another_tv), products(:one), products(:two)], Product.recent.to_a
+    assert_equal [ products(:two),products(:another_tv), products(:one)], Product.recent.to_a
   end
 
   #test search should not find 'video game' and '100' as min price
