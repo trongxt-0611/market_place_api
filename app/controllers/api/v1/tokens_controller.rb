@@ -1,9 +1,9 @@
 class Api::V1::TokensController < ApplicationController
   def create
-    @user = User.find(params[:email])
+    @user = User.find_by_email(user_params[:email])
     #User.authenticate (which exists thanks to the
     #gem bcrypt) with the password as a parameter
-    if @user&.authenticate(params[:password])
+    if @user&.authenticate(user_params[:password])
       render json: {
         token: JsonWebToken.encode(user_id: @user.id),
         email: @user.email
