@@ -11,7 +11,7 @@ class JsonWebToken
     end
 
     #decode function
-    def decode token
+    def decode token  
       decoded = JWT.decode(token, SECRECT_KEY).first
       HashWithIndifferentAccess.new decoded
     end
