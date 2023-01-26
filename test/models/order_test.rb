@@ -13,7 +13,7 @@ class OrderTest < ActiveSupport::TestCase
 
 
   test  'should set total' do
-    order = Orders.new user_id: @order.user_id
+    order = Order.new user_id: @order.user_id
     order.products << products(:one)
     order.products << products(:two)
     order.save
