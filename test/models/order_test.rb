@@ -1,14 +1,23 @@
 require "test_helper"
 
 class OrderTest < ActiveSupport::TestCase
+  setup do
+    @order = orders(:one)
+    @product1 = products(:one)
+    @product2 = products(:two)
+  end
   # test "the truth" do
   #   assert true
   # end
   #test the order should have a positive total
-  test "the order should have a positive total" do
-    order = orders(:one)
-    order.total = -1
-    assert_not order.valid?
+
+
+  test  'should set total' do
+    order = Orders.new user_id: @order.user_id
+    order.products << products(:one)
+    order.products << products(:two)
+    order.save
+    assert_equal order.total, (@product1.price + @product2.price)
   end
 
 end
