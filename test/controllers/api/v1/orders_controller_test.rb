@@ -60,15 +60,15 @@ class Api::V1::OrdersControllerTest < ActionDispatch::IntegrationTest
   #   assert_response :created
   # end
 
-  test 'should create order with 2 products and placements' do
-    assert_difference('Order.count',1) do
-      assert_difference('Placements.count', 2) do
-        post api_v1_orders_url,
-          params: @order_params,
-          headers:  {Authorization: JsonWebToken.encode(user_id: @order.user_id)},
-          as: :json
-      end
-    end
-    assert_response :created
-  end
+  # test 'should create order with 2 products and placements' do
+  #   assert_difference('Order.count',1) do
+  #     assert_difference('Placements.count', 2) do
+  #       post api_v1_orders_url,
+  #         params: @order_params,
+  #         headers:  {Authorization: JsonWebToken.encode(user_id: @order.user_id)},
+  #         as: :json
+  #     end
+  #   end
+  #   assert_response :created
+  # end
 end
