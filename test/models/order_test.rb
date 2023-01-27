@@ -13,11 +13,13 @@ class OrderTest < ActiveSupport::TestCase
 
 
   test  'should set total' do
-    order = Order.new user_id: @order.user_id
-    order.products << products(:one)
-    order.products << products(:two)
-    order.save
-    assert_equal order.total, (@product1.price + @product2.price)
+    @order.placements =[
+      Placement.new(product_id: @product1.id, quantity: 2),
+      Placement.new(product_id: @product2.id, quantity: 2),
+    ]
+    @order.set_total!
+    expected_total = @product1.price * 2 + @product2.price * 2
+    assert_equal @order.total, expected_total
   end
 
   test 'builds 2 placements for the order' do
@@ -31,7 +33,8 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test 'an order should command not too much product than available' do
-    @order.placements << Placements.new(product_id: @product1.id, quantity: (@product1.quantity + 1))
+    @order.placements << Placement.new(product_id: @product1.id,
+                                       quantity: (@product1.quantity + 1))
     assert_not @order.valid?
   end
 end

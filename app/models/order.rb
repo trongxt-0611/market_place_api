@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  include ActiveModel::Validations
   before_validation :set_total!
 
   belongs_to :user
@@ -9,14 +10,19 @@ class Order < ApplicationRecord
   validates_with EnoughProductsValidator
 
   def set_total!
-    self.total = products.map(&:price).sum
+    # self.total = self.placements.map{
+    #   |placement| placement.product.price * placement.quantity
+    # }.sum
+    self.total = self.placements.reduce(0){
+      |total, placement| total + placement.product.price * placement.quantity
+    }
   end
   # @param product_ids_and_quantities [Array<Hash>] something
   #like this `[{product_id: 1, quantity: 2}]`
   # @yield [Placement] placements build
   def build_placements_with_product_ids_and_quantities product_ids_and_quantities
     product_ids_and_quantities.each do |product_id_and_quantity|
-      placement = placements.build(
+      placement = self.placements.build(
         product_id: product_id_and_quantity[:product_id],
         quantity: product_id_and_quantity[:quantity],
       )

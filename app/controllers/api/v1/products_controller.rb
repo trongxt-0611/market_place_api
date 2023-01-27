@@ -43,7 +43,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :price, :published)
+    params.require(:product).permit(:title, :price, :published, :user_id)
   end
 
   def check_owner
