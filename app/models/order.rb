@@ -6,6 +6,7 @@ class Order < ApplicationRecord
                    numericality: { greater_than_or_equal_to: 0 }
   has_many :placements, dependent: :destroy
   has_many :products, through: :placements
+  validates_with EnoughProductsValidator
 
   def set_total!
     self.total = products.map(&:price).sum
