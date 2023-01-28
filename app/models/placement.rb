@@ -6,6 +6,6 @@ class Placement < ApplicationRecord
   belongs_to :order
 
   def decrement_product_quantity!
-    product.decrement!(:quantity, quantity)
+    product.decrement!(:quantity, self.quantity)
   end
 end

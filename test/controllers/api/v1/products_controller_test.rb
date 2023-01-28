@@ -28,6 +28,7 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
   #   assert_equal @product.title, json_response.dig(:data, :attributes, :title)
   #   assert_equal @product.user.id.to_s, json_response.dig(:data, :relationships, :user, :data, :id)
   #   assert_equal @product.user.email, json_response.dig(:included, :attributes, :email)
+      # assert_json_response_is_paginated json_response
   # end
     # Hash#dig. It is a Ruby method allowing you to retrieve
     # elements in an nested Hash by avoiding errors if an element
@@ -88,4 +89,5 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
   #     assert_response :forbidden
   #   end
   # end
+
 end
