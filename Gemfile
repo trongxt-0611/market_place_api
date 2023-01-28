@@ -54,3 +54,5 @@ gem "faker", "~> 3.1"
 gem "fast_jsonapi", "~> 1.5"
 
 gem "kaminari", "~> 1.2"
+
+gem "rack-cors", "~> 1.1"
