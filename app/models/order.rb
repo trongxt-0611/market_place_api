@@ -14,7 +14,7 @@ class Order < ApplicationRecord
     #   |placement| placement.product.price * placement.quantity
     # }.sum
     self.total = self.placements.reduce(0){
-      |total, placement| total + placement.product.price * placement.quantity
+      |total, placement| total + (placement.product.price * placement.quantity)
     }
   end
   # @param product_ids_and_quantities [Array<Hash>] something
